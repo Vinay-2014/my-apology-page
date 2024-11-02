@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating Hearts</title>
+    <!-- Link to Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet"> 
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Yellowtail', cursive; /* Apply the Yellowtail font */
+            background-color: #ff69b4; /* Dark pink background */
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        .emoji-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Full height for the emoji page */
+            display: flex;
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            flex-direction: column; /* Stack children vertically */
+        }
+
+        .background-text {
+            font-size: 24px;
+            margin-bottom: 20px; /* Space below the text */
+            text-align: center;
+            color: #fff; /* Text color for contrast */
+        }
+
+        .highlight {
+            color: red; /* Red color */
+            font-family: 'Yellowtail', cursive; /* Use the same cool font for the highlighted text */
+            font-weight: bold; /* Make it bold */
+        }
+
+        .sorry-gif {
+            margin-top: 20px; /* Space above the GIF */
+            width: 300px; /* Adjust size as needed */
+        }
+
+        /* Floating hearts */
+        .floating-heart {
+            position: absolute;
+            font-size: 40px; /* Size of the hearts */
+            opacity: 1; /* Fully visible */
+            animation: float 5s linear forwards; /* Animation for floating */
+        }
+
+        /* Heart float animation */
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.2); opacity: 0; } /* Float up and fade out */
+        }
+    </style>
+</head>
+<body>
+    <div class="emoji-container" id="emoji-container">
+        <div class="background-text">I’m truly sorry  <span class="highlight"> Mag </span> for my actions; they came from a place of misunderstanding. Please let us make it right</div>
+        <img src="sorry-sry-sorry.gif" alt="Sorry" class="sorry-gif">
+    </div>
+
+    <script>
+        const emojiContainer = document.getElementById('emoji-container');
+        const hearts = [
+            '❤️', '🧡', '💛', '💚', '💙', '💜', '💖', '💗', 
+            '💓', '💞', '💕', '💘', '💝', '💟', '❣️', '💔', '💢'
+        ]; // All types of heart symbols
+
+        function createFloatingHeart() {
+            const heart = document.createElement('span');
+            heart.className = 'floating-heart';
+            const randomHeart = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.textContent = randomHeart;
+
+            const randomX = Math.random() * 100; // Random horizontal position
+            heart.style.left = randomX + 'vw';
+            heart.style.bottom = '0';
+            emojiContainer.appendChild(heart);
+
+            const duration = Math.random() * 2 + 1; // Range: 1s to 3s
+            heart.style.animationDuration = duration + 's';
+
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(createFloatingHeart, 100);
+    </script>
+</body>
+</html>
