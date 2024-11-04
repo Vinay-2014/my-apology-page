@@ -75,7 +75,7 @@
             color: green;
         }
 
-        .floating-heart {
+        .floating-emoji {
             position: absolute;
             font-size: 50px;
             animation: shake 0.7s infinite;
@@ -109,17 +109,17 @@
         /* Rain style */
         .raindrop {
             position: absolute;
-            width: 4px; /* Increased width for larger raindrops */
-            height: 20px; /* Increased height for larger raindrops */
+            width: 4px;
+            height: 20px;
             background-color: rgba(255, 255, 255, 0.7);
             pointer-events: none;
             animation: fall linear forwards;
-            opacity: 0.7; /* Increased opacity for visibility */
+            opacity: 0.7;
         }
 
         @keyframes fall {
             to {
-                transform: translateY(100vh); /* Drops fall to the bottom of the viewport */
+                transform: translateY(100vh);
                 opacity: 0;
             }
         }
@@ -127,8 +127,8 @@
         /* Rose style */
         .rose {
             position: absolute;
-            font-size: 30px; /* Size of the roses */
-            animation: float 3s ease-in-out infinite; /* Floating animation */
+            font-size: 30px;
+            animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
@@ -174,7 +174,7 @@
                     Math.pow(randomX - (yesRect.left - containerRect.left), 2) +
                     Math.pow(randomY - (yesRect.top - containerRect.top), 2)
                 );
-            } while (distance < minimumDistance); // Repeat if too close
+            } while (distance < minimumDistance);
 
             noButton.style.left = `${randomX}px`;
             noButton.style.top = `${randomY}px`;
@@ -188,13 +188,12 @@
             for (let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
                 confetti.classList.add('confetti');
-                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`; // Random color
-                confetti.style.left = `${Math.random() * 100}vw`; // Random horizontal position
-                confetti.style.top = `${Math.random() * 20}vh`; // Random start position (near top)
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`; 
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = `${Math.random() * 20}vh`;
 
                 document.body.appendChild(confetti);
 
-                // Remove confetti after animation
                 setTimeout(() => confetti.remove(), 1000);
             }
         }
@@ -202,77 +201,70 @@
         yesButton.addEventListener('click', () => {
             messageDiv.textContent;
             messageDiv.classList.remove('hidden');
-            createConfetti(); // Trigger confetti effect
+            createConfetti();
             setTimeout(() => {
                 window.location.href = 'emojis.html';
-            }, 1000); // 1-second redirection
+            }, 1000);
         });
 
-        function createFloatingHeart() {
-            const heart = document.createElement('span');
-            heart.className = 'floating-heart';
-            heart.textContent = '❤️';
+        function createFloatingEmoji() {
+            const emoji = document.createElement('span');
+            emoji.className = 'floating-emoji';
+
+            // Random sad emoji
+            const emojis = ['😢', '😞', '😔', '😟', '😩'];
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
             const randomX = Math.random() * 100;
             const randomY = Math.random() * 100;
-            heart.style.left = randomX + 'vw';
-            heart.style.top = randomY + 'vh';
+            emoji.style.left = randomX + 'vw';
+            emoji.style.top = randomY + 'vh';
 
-            document.body.appendChild(heart);
+            document.body.appendChild(emoji);
 
             setTimeout(() => {
-                heart.remove();
+                emoji.remove();
             }, 1000);
         }
 
-        setInterval(createFloatingHeart, 200);
+        setInterval(createFloatingEmoji, 200);
 
-        // Function to create rain effect
         function createRaindrop() {
             const raindrop = document.createElement('div');
             raindrop.className = 'raindrop';
-            raindrop.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
-            raindrop.style.top = '-20px'; // Start position above the viewport
-
-            // Random height for realism
-            raindrop.style.height = Math.random() * 10 + 15 + 'px'; // Increased height
+            raindrop.style.left = Math.random() * 100 + 'vw';
+            raindrop.style.top = '-20px';
+            raindrop.style.height = Math.random() * 10 + 15 + 'px';
 
             document.body.appendChild(raindrop);
 
-            // Set a random animation duration for the rain
-            const duration = Math.random() * 2 + 1; // Random duration between 1s and 3s
+            const duration = Math.random() * 2 + 1;
             raindrop.style.animationDuration = duration + 's';
 
-            // Remove the raindrop after animation
             setTimeout(() => {
                 raindrop.remove();
             }, duration * 1000);
         }
 
-        // Create rain at regular intervals
-        setInterval(createRaindrop, 200); // Adjust the interval as needed
+        setInterval(createRaindrop, 200);
 
-        // Function to create animated roses
         function createRose() {
             const rose = document.createElement('span');
             rose.className = 'rose';
             const roses = ['🌹', '🌷', '🌺', '🌻', '🌼', '🌸'];
-            rose.textContent = roses[Math.floor(Math.random() * roses.length)]; // Randomly select a rose emoji
+            rose.textContent = roses[Math.floor(Math.random() * roses.length)];
 
-            // Position the rose at the bottom of the page
-            rose.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
-            rose.style.bottom = '60px'; // Fixed position at the bottom
+            rose.style.left = Math.random() * 100 + 'vw';
+            rose.style.bottom = '60px';
 
             document.body.appendChild(rose);
 
-            // Remove the rose after some time
             setTimeout(() => {
                 rose.remove();
-            }, 4000); // Adjust time before removing the rose
+            }, 4000);
         }
 
-        // Create roses at regular intervals
-        setInterval(createRose, 1000); // Adjust the interval as needed
+        setInterval(createRose, 1000);
     </script>
 </body>
 </html>
